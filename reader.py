@@ -1,5 +1,6 @@
 import numpy as np
 from structures import Residue, Protein
+import copy
 
 
 class Topology:
@@ -56,6 +57,10 @@ class PdbReader:
         self.read_pdb(file_name)
 
     @property
+    def topology(self):
+        return self.__topology
+
+    @property
     def protein(self):
         return self.__protein
 
@@ -80,10 +85,11 @@ class PdbReader:
                         for alt_name in self.__topology.association[name_type]:
                             if atom_name in self.__topology.residues[alt_name].atoms:
                                 name_type = alt_name
-                                continue
-                        self.__protein.residues[id_type].change_to_alt_res(self.__topology.residues[name_type])
+                                self.__protein.residues[id_type].change_to_alt_res(self.__topology.residues[name_type])
+                                break
                         self.__protein.residues[id_type].res_id = res_id
                     self.__protein.residues[id_type].atoms[atom_name].coordinates = np.array(cartesian_coords)
+                    self.__protein.residues[id_type].atoms[atom_name].residue = self.__protein.residues[id_type]
 
 
 def initialise(top_file, pdb_file):

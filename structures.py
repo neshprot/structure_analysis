@@ -16,7 +16,7 @@ class Atom:
         """
         self.__name = None
         self.__coordinates = np.array([None, None, None])
-        self.__residue = residue
+        self.__residue = None
 
     @property
     def name(self) -> str:
@@ -35,8 +35,12 @@ class Atom:
         self.__coordinates = atom_coordinates
 
     @property
-    def residue(self):
+    def residue(self) -> Residue:
         return self.__residue
+
+    @residue.setter
+    def residue(self, value):
+        self.__residue = value
 
 
 class Residue:
@@ -100,6 +104,7 @@ class Residue:
         new_res = Residue()
         new_res.__bonds = self.bonds
         new_res.__res_name = self.res_name
+        new_res.__res_id = self.res_id
         for atom_type, atom in self.atoms.items():
             new_res.atoms = [atom_type, copy.copy(atom)]
         return new_res
@@ -111,6 +116,7 @@ class Residue:
         for atom_name in for_adding:
             self.initialize_atoms(atom_name)
         keys_to_delete = []
+        bonds = copy.copy(self.__bonds)
         for atom_name in for_deleting:
             del self.atoms[atom_name]
             for key, value in self.__bonds.items():
@@ -119,9 +125,10 @@ class Residue:
                 else:
                     value[:] = [item for item in value if item != atom_name]
             for key in keys_to_delete:
-                del self.__bonds[key]
+                del bonds[key]
         for key, value in alt_res.__bonds.items():
-            self.__bonds.setdefault(key, []).extend(value)
+            bonds.setdefault(key, []).extend(value)
+        self.__bonds = bonds
 
 
 class Protein:
