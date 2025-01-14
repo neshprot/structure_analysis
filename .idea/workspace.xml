@@ -4,15 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8cfe9b9d-7f31-4013-9bdf-03a25b350b06" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/structural_analysis.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/structural_analysis.iml" afterDir="false" />
+    <list default="true" id="8cfe9b9d-7f31-4013-9bdf-03a25b350b06" name="Changes" comment="optimization of h-bond searching, time elapsed: 1.002s">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/interactions.py" beforeDir="false" afterPath="$PROJECT_DIR$/interactions.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/octree.py" beforeDir="false" afterPath="$PROJECT_DIR$/octree.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reader.py" beforeDir="false" afterPath="$PROJECT_DIR$/reader.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/run_sa.py" beforeDir="false" afterPath="$PROJECT_DIR$/run_sa.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/structures.py" beforeDir="false" afterPath="$PROJECT_DIR$/structures.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -209,6 +204,20 @@
       <option name="presentableId" value="Default" />
       <updated>1734632954657</updated>
     </task>
+    <task id="LOCAL-00001" summary="optimization of h-bond searching, time elapsed: 1.002s">
+      <option name="closed" value="true" />
+      <created>1736849049557</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1736849049557</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="optimization of h-bond searching" />
+    <MESSAGE value="optimization of h-bond searching, time elapsed: 1.002s" />
+    <option name="LAST_COMMIT_MESSAGE" value="optimization of h-bond searching, time elapsed: 1.002s" />
   </component>
 </project>

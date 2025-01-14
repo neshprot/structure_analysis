@@ -86,3 +86,28 @@ class InteractionFactory:
     def create_interaction(interaction_type, *args, **kwargs):
         if interaction_type == "hydrogen":
             return HydrogenBond(*args, **kwargs)
+
+class Interactions:
+
+    def find_interactions(self, config, inter_name: str, separation, atoms):
+        for atom in atoms:
+            interactions = []
+            nearest_atoms = separation.cube_cluster_search(atom, inter_name, config)
+            for int_atom in nearest_atoms:
+                if atom.interaction:
+                    continue
+                interaction_class = InteractionFactory.create_interaction(inter_name, atom, int_atom, config)
+                if interaction_class:
+                    if int_atom.interaction:
+                        if int_atom.interaction.squared_distance > interaction_class.squared_distance:
+                            if int_atom.interaction.atom1.atom_id == int_atom.atom_id:
+                                int_atom.interaction.atom2.interaction = None
+                            else:
+                                int_atom.interaction.atom1.interaction = None
+                            int_atom.interaction = interaction_class
+                            atom.interaction = interaction_class
+                            interactions.append(interaction_class)
+                    else:
+                        int_atom.interaction = interaction_class
+                        atom.interaction = interaction_class
+                        interactions.append(interaction_class)
