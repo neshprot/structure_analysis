@@ -4,6 +4,12 @@ import math
 
 class Config:
     def __init__(self, param1, param2, param3):
+        """
+
+        :param param1: lower cutoff H-bond distance
+        :param param2: upper cutoff H-bond distance
+        :param param3: angle value cutoff
+        """
         self.lower_cutoff = param1
         self.upper_cutoff = param2
         self.cutoff_angle = param3
@@ -39,12 +45,15 @@ class HydrogenBond:
 
     @staticmethod
     def calculate_angle(atom1, atom2):
-        if atom1.name[0] in ['H'] and atom2.name[0] in ['N', 'O', 'H']:
+        if len(atom1.residue.bonds[atom1.name]) > 1 or len(atom2.residue.bonds[atom2.name]) > 1:
+            return None
+
+        if atom1.name[0] in ['H'] and atom2.name[0] in ['N', 'O']:
             point1 = atom1.coordinates
             donator = atom1.residue.bonds[atom1.name][0]
             point2 = atom1.residue.atoms[donator].coordinates
             point3 = atom2.coordinates
-        elif atom2.name[0] in ['H'] and atom1.name[0] in ['N', 'O', 'H']:
+        elif atom2.name[0] in ['H'] and atom1.name[0] in ['N', 'O']:
             point1 = atom2.coordinates
             donator = atom2.residue.bonds[atom2.name][0]
             point2 = atom2.residue.atoms[donator].coordinates

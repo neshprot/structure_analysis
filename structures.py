@@ -14,9 +14,19 @@ class Atom:
             coordinates - coordinates of atom
             :param residue - link to class residue, which consists this atom
         """
+        self.__atom_id = None
         self.__name = None
         self.__coordinates = np.array([None, None, None])
         self.__residue = None
+        self.__interaction = None
+
+    @property
+    def atom_id(self):
+        return self.__atom_id
+
+    @atom_id.setter
+    def atom_id(self, value):
+        self.__atom_id = value
 
     @property
     def name(self) -> str:
@@ -41,6 +51,14 @@ class Atom:
     @residue.setter
     def residue(self, value):
         self.__residue = value
+
+    @property
+    def interaction(self) -> Residue:
+        return self.__interaction
+
+    @interaction.setter
+    def interaction(self, value):
+        self.__interaction = value
 
 
 class Residue:

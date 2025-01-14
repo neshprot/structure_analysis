@@ -5,6 +5,11 @@ import copy
 
 class Topology:
     def __init__(self):
+        """
+        Args:
+            residues - topology from input file
+            association - alternative versions of residue
+        """
         self.__residues = {}
         self.__association = {}
 
@@ -52,6 +57,11 @@ class Topology:
 
 class PdbReader:
     def __init__(self, topology, file_name):
+        """
+
+        :param topology: topology class
+        :param file_name: pdb file name
+        """
         self.__topology = topology
         self.__protein = Protein()
         self.read_pdb(file_name)
@@ -71,6 +81,7 @@ class PdbReader:
                 line = line.strip()  # delete spaces in the beginning and the end
                 if line.startswith('ATOM'):
                     atom_line = line.split()[1:-3:]
+                    atom_id = int(atom_line[0])
                     res_id = int(atom_line[4])
                     atom_name = atom_line[1]
                     x_coord = float(atom_line[5])
@@ -89,6 +100,7 @@ class PdbReader:
                                 break
                         self.__protein.residues[id_type].res_id = res_id
                     self.__protein.residues[id_type].atoms[atom_name].coordinates = np.array(cartesian_coords)
+                    self.__protein.residues[id_type].atoms[atom_name].atom_id = atom_id
                     self.__protein.residues[id_type].atoms[atom_name].residue = self.__protein.residues[id_type]
 
 
