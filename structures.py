@@ -18,7 +18,7 @@ class Atom:
         self.__name = None
         self.__coordinates = np.array([None, None, None])
         self.__residue = None
-        self.__interaction = None
+        self.__interaction = []
 
     @property
     def atom_id(self):
@@ -53,12 +53,17 @@ class Atom:
         self.__residue = value
 
     @property
-    def interaction(self) -> Residue:
-        return self.__interaction
+    def interaction(self) -> object:
+        if self.__interaction:
+            return self.__interaction[0]
+        return None
 
     @interaction.setter
-    def interaction(self, value):
+    def interaction(self, value: list):
         self.__interaction = value
+
+    def back_interaction(self):
+        return self.__interaction
 
 
 class Residue:
@@ -117,15 +122,16 @@ class Residue:
         new_atom = Atom(self)
         new_atom.name = atom_name
         self.__atoms[atom_name] = new_atom
-
+    '''
     def __copy__(self):
         new_res = Residue()
         new_res.__bonds = self.bonds
         new_res.__res_name = self.res_name
         new_res.__res_id = self.res_id
         for atom_type, atom in self.atoms.items():
-            new_res.atoms = [atom_type, copy.copy(atom)]
+            new_res.atoms = [atom_type, copy.deepcopy(atom)]
         return new_res
+    '''
 
     def change_to_alt_res(self, alt_res: Residue) -> None:
         self.__res_name = alt_res.res_name
@@ -134,7 +140,7 @@ class Residue:
         for atom_name in for_adding:
             self.initialize_atoms(atom_name)
         keys_to_delete = []
-        bonds = copy.copy(self.__bonds)
+        bonds = copy.deepcopy(self.__bonds)
         for atom_name in for_deleting:
             del self.atoms[atom_name]
             for key, value in self.__bonds.items():
@@ -155,6 +161,7 @@ class Protein:
         residues - all residues in protein
         """
         self.__residues = {}
+        self.atoms = {}
 
     @property
     def residues(self):
@@ -167,6 +174,6 @@ class Protein:
         :param res_id: it's id in protein
         :return: None
         """
-        residue = copy.copy(template_res)
+        residue = copy.deepcopy(template_res)
         residue.res_id = res_id
         self.__residues[res_id] = residue

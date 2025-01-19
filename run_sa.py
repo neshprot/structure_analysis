@@ -13,7 +13,14 @@ def atoms_for_hbond(protein):
     max_coord = np.array([-float('inf'), -float('inf'), -float('inf')])
     for k, v in protein.residues.items():
         for atom in v.atoms.values():
-            if atom.name[0] in ['H', 'O', 'N'] and len(atom.residue.bonds[atom.name]) == 1:
+            protein.atoms.update({atom.atom_id: atom})
+            if atom.name[0] in ['H', 'O', 'N']:
+                if atom.residue.res_name != 'HOH':
+                    if len(atom.residue.bonds[atom.name]) != 1:
+                        continue
+                    #skip backbone
+                    if 'C' in atom.residue.bonds[atom.name] or 'N' in atom.residue.bonds[atom.name]:
+                        continue
                 atoms_in_prot.append(atom)
         coords = [atom.coordinates for atom in v.atoms.values()]
         min_coord = np.min(coords + [min_coord], axis=0)
@@ -24,7 +31,7 @@ atoms_in_prot, min_coord, max_coord = atoms_for_hbond(protein)
 cubes = SpaceSeparation(atoms_in_prot, 5, min_coord, max_coord)
 config = Config(1, 25, 30)
 interactions = Interactions()
-interactions.find_interactions(config, 'hydrogen', cubes, atoms_in_prot)
+interactions.find_interactions(config, 'hydrogen', cubes, atoms_in_prot, protein)
 
 print("time elapsed: {:.3f}s".format(time.time() - start_time))
 

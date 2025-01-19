@@ -1,6 +1,5 @@
 import numpy as np
 from structures import Residue, Protein
-import copy
 
 
 class Topology:
