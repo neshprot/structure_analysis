@@ -18,7 +18,8 @@ class Atom:
         self.__name = None
         self.__coordinates = np.array([None, None, None])
         self.__residue = None
-        self.__interaction = []
+        self.__hbond = None
+        self.__electrostatic = None
 
     @property
     def atom_id(self):
@@ -53,17 +54,20 @@ class Atom:
         self.__residue = value
 
     @property
-    def interaction(self) -> object:
-        if self.__interaction:
-            return self.__interaction[0]
-        return None
+    def hbond(self) -> object:
+        return self.__hbond
 
-    @interaction.setter
-    def interaction(self, value: list):
-        self.__interaction = value
+    @hbond.setter
+    def hbond(self, value: list):
+        self.__hbond = value
 
-    def back_interaction(self):
-        return self.__interaction
+    @property
+    def electrostatic(self):
+        return self.__electrostatic
+
+    @electrostatic.setter
+    def electrostatic(self, value):
+        self.__electrostatic = value
 
 
 class Residue:
@@ -79,6 +83,7 @@ class Residue:
         self.__res_id = None
         self.__bonds = {}
         self.__atoms = {}
+        self.__charge = None
 
     @property
     def res_name(self) -> str:
@@ -113,6 +118,14 @@ class Residue:
     def atoms(self, type_atom: tuple[str, Atom]) -> None:
         self.__atoms.update({type_atom[0]: type_atom[1]})
 
+    @property
+    def charge(self):
+        return self.__charge
+
+    @charge.setter
+    def charge(self, value):
+        self.__charge = value
+
     def initialize_atoms(self, atom_name: str) -> None:
         """
         Initialize types of atoms in residue
@@ -122,16 +135,6 @@ class Residue:
         new_atom = Atom(self)
         new_atom.name = atom_name
         self.__atoms[atom_name] = new_atom
-    '''
-    def __copy__(self):
-        new_res = Residue()
-        new_res.__bonds = self.bonds
-        new_res.__res_name = self.res_name
-        new_res.__res_id = self.res_id
-        for atom_type, atom in self.atoms.items():
-            new_res.atoms = [atom_type, copy.deepcopy(atom)]
-        return new_res
-    '''
 
     def change_to_alt_res(self, alt_res: Residue) -> None:
         self.__res_name = alt_res.res_name

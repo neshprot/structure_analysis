@@ -22,7 +22,7 @@ class SpaceSeparation:
     def cube_comparison(self):
         for atom in self.__atoms:
             relative_position = [coord - start for coord, start in zip(atom.coordinates, self.__min_coord)]
-            sector_index = [str(int(rel_p // 5)) for rel_p in relative_position]
+            sector_index = [str(int(rel_p // self.__cell_size)) for rel_p in relative_position]
             sec_id = "-".join(sector_index)
             self.__cubes.setdefault(sec_id, []).append(atom)
 
@@ -37,21 +37,6 @@ class SpaceSeparation:
 
         relative_position = [coord - start for coord, start in zip(core_atom.coordinates, self.__min_coord)]
         core_sector_index = [str(int(rel_p // self.__cell_size)) for rel_p in relative_position]
-        """
-        # sectors around central one
-        for shift in sectors_around:
-            sector_index = [str(int(a) - b) for a, b in zip(core_sector_index, shift)]
-            sec_id = "-".join(sector_index)
-            for atom in self.__cubes.get(sec_id, []):
-                if atom.interaction:
-                    continue
-                interaction_class = InteractionFactory.create_interaction(interaction_type, core_atom, atom, config)
-                if interaction_class:
-                    interactions.append(interaction_class)
-                    core_atom.interaction = interaction_class
-                    atom.interaction = interaction_class
-        return interactions
-        """
         nearest_atoms = []
         for shift in sectors_around:
             sector_index = [str(int(a) - b) for a, b in zip(core_sector_index, shift)]

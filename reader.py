@@ -31,9 +31,11 @@ class Topology:
                 line = line.strip()     # delete spaces in the beginning and the end
                 # create new residues
                 if line.startswith("RESI") or line.startswith('PRES'):
-                    res_name = line.split()[1]
+                    info = line.split()
+                    res_name = info[1]
                     residue = Residue()
                     residue.res_name = res_name
+                    residue.charge = float(info[2])
                     self.residues = [res_name, residue]
                     res_type = res_name
                     continue
