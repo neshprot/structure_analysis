@@ -4,13 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8cfe9b9d-7f31-4013-9bdf-03a25b350b06" name="Changes" comment="update H-bonds interactions and add right water accounting">
+    <list default="true" id="8cfe9b9d-7f31-4013-9bdf-03a25b350b06" name="Changes" comment="add electrostatic interactions">
+      <change afterPath="$PROJECT_DIR$/utils.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/interactions.py" beforeDir="false" afterPath="$PROJECT_DIR$/interactions.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/octree.py" beforeDir="false" afterPath="$PROJECT_DIR$/octree.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reader.py" beforeDir="false" afterPath="$PROJECT_DIR$/reader.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/run_sa.py" beforeDir="false" afterPath="$PROJECT_DIR$/run_sa.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/structures.py" beforeDir="false" afterPath="$PROJECT_DIR$/structures.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,23 +45,23 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Python.interactions.executor&quot;: &quot;Run&quot;,
-    &quot;Python.octree.executor&quot;: &quot;Run&quot;,
-    &quot;Python.reader.executor&quot;: &quot;Run&quot;,
-    &quot;Python.run_sa.executor&quot;: &quot;Run&quot;,
-    &quot;Python.structures.executor&quot;: &quot;Run&quot;,
-    &quot;Python.test.executor&quot;: &quot;Run&quot;,
-    &quot;Python.еуые.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/HP/PycharmProjects/structural_analysis&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Python.interactions.executor": "Run",
+    "Python.octree.executor": "Run",
+    "Python.reader.executor": "Run",
+    "Python.run_sa.executor": "Run",
+    "Python.structures.executor": "Run",
+    "Python.test.executor": "Run",
+    "Python.еуые.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "master",
+    "ignore.virus.scanning.warn.message": "true",
+    "last_opened_file_path": "C:/Users/HP/PycharmProjects/structure_analysis",
+    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\HP\PycharmProjects\structural_analysis" />
@@ -234,7 +231,15 @@
       <option name="project" value="LOCAL" />
       <updated>1737305655277</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="add electrostatic interactions">
+      <option name="closed" value="true" />
+      <created>1737376806697</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1737376806697</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -242,6 +247,7 @@
     <MESSAGE value="optimization of h-bond searching, time elapsed: 1.002s" />
     <MESSAGE value="h-bonds and outlog" />
     <MESSAGE value="update H-bonds interactions and add right water accounting" />
-    <option name="LAST_COMMIT_MESSAGE" value="update H-bonds interactions and add right water accounting" />
+    <MESSAGE value="add electrostatic interactions" />
+    <option name="LAST_COMMIT_MESSAGE" value="add electrostatic interactions" />
   </component>
 </project>
