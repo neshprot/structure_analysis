@@ -16,7 +16,9 @@ libraries:
 
 ### Installing
 
+```
 git clone https://github.com/neshprot/structure_analysis.git
+```
 
 ### Executing program
 
