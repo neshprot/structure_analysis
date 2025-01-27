@@ -20,7 +20,7 @@ git clone https://github.com/neshprot/structure_analysis.git
 
 ### Executing program
 
-* How to run the program
+How to run the program
 - add your target pdb files in compare folder
 - run the script
 ```
