@@ -47,25 +47,27 @@ def custom_sort_key(obj):
             parts.append(part)
     return parts
 
-# Пример использования
-folder = "compare"  # Замените на фактический путь
-files = get_file_names_from_folder(folder)
-pdb_names = sorted(files, key=custom_sort_key)
-
-hbond_protein_dict = {}
-for pdb_name in pdb_names:
-    protein = one_prot(f'compare/{pdb_name}')
-    hbond_protein_dict = get_inteructions(protein, pdb_name, hbond_protein_dict)
-
-
 def complex_sort_key(key):
     parts = key[0].split(', ')
     first_part = parts[0].split(' - ')
     second_part = parts[1].split(' - ')
-    return (int(first_part[0]), int(second_part[0]))
+    return int(first_part[0]), int(second_part[0])
+
+folder = "compare"
+files = get_file_names_from_folder(folder)
+pdb_names = sorted(files, key=custom_sort_key)
+
+hbond_protein_dict = {}
+electrostatic_protein_dict = {}
+for pdb_name in pdb_names:
+    protein = one_prot(f'compare/{pdb_name}')
+    hbond_protein_dict, electrostatic_protein_dict = get_inteructions(protein, pdb_name, hbond_protein_dict, electrostatic_protein_dict)
 
 sorted_items = sorted(hbond_protein_dict.items(), key=complex_sort_key)
-create_excel(sorted_items, pdb_names)
+create_excel(sorted_items, pdb_names, 'hbonds')
+
+sorted_items = sorted(electrostatic_protein_dict.items(), key=complex_sort_key)
+create_excel(sorted_items, pdb_names, 'electrostatic')
 
 """
 print("time elapsed: {:.3f}s".format(time.time() - start_time))

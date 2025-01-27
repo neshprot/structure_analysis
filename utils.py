@@ -65,19 +65,22 @@ def format_interaction(j, idx):
         return f'{j.atom2.residue.res_id} - {j.atom2.name}, {j.atom1.residue.res_id} - {j.atom1.name}'
 
 
-def get_inteructions(protein, pdb_name, hbond_protein_dict):
+def get_inteructions(protein, pdb_name, hbond_protein_dict, electrostatic_protein_dict):
     sorted_items = sorted(protein.residues.items())
     for idx, res in sorted_items:
-        if not any([atom.hbond for atom in res.atoms.values()]):
+        if not (any([atom.hbond for atom in res.atoms.values()]) or any([atom.electrostatic for atom in res.atoms.values()])):
             continue
         for a in res.atoms.values():
             if a.hbond:
                 hbond_protein_dict[f'{format_interaction(a.hbond, idx)}'] = hbond_protein_dict.get(
                     f'{format_interaction(a.hbond, idx)}', []) + [pdb_name]
-    return hbond_protein_dict
+            if a.electrostatic:
+                electrostatic_protein_dict[f'{format_interaction(a.electrostatic, idx)}'] = electrostatic_protein_dict.get(
+                    f'{format_interaction(a.electrostatic, idx)}', []) + [pdb_name]
+    return hbond_protein_dict, electrostatic_protein_dict
 
 
-def create_excel(my_dict, columns):
+def create_excel(my_dict, columns, file_name):
     # Создаем новую книгу Excel
     workbook = openpyxl.Workbook()
     sheet = workbook.active
@@ -109,5 +112,5 @@ def create_excel(my_dict, columns):
             cell.border = thin_border  # Добавляем границы
 
     # Сохраняем файл
-    workbook.save("output.xlsx")
+    workbook.save(f"{file_name}.xlsx")
 

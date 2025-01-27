@@ -4,9 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8cfe9b9d-7f31-4013-9bdf-03a25b350b06" name="Changes" comment="compare proteins and create excel file">
+    <list default="true" id="8cfe9b9d-7f31-4013-9bdf-03a25b350b06" name="Changes" comment="example">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/6GUX_dow.pdb" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/run_sa.py" beforeDir="false" afterPath="$PROJECT_DIR$/run_sa.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils.py" afterDir="false" />
     </list>
@@ -248,7 +247,23 @@
       <option name="project" value="LOCAL" />
       <updated>1737921344606</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="get pdbs from compare folder">
+      <option name="closed" value="true" />
+      <created>1737971862152</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1737971862152</updated>
+    </task>
+    <task id="LOCAL-00007" summary="example">
+      <option name="closed" value="true" />
+      <created>1737971967270</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1737971967270</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -258,6 +273,8 @@
     <MESSAGE value="update H-bonds interactions and add right water accounting" />
     <MESSAGE value="add electrostatic interactions" />
     <MESSAGE value="compare proteins and create excel file" />
-    <option name="LAST_COMMIT_MESSAGE" value="compare proteins and create excel file" />
+    <MESSAGE value="get pdbs from compare folder" />
+    <MESSAGE value="example" />
+    <option name="LAST_COMMIT_MESSAGE" value="example" />
   </component>
 </project>
