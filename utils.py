@@ -1,6 +1,6 @@
 import numpy as np
 import openpyxl
-from openpyxl.styles import PatternFill
+from openpyxl.styles import PatternFill, Border, Side
 
 def atoms_for_hbond(protein):
     def check_hbond(atom):
@@ -82,22 +82,31 @@ def create_excel(my_dict, columns):
     workbook = openpyxl.Workbook()
     sheet = workbook.active
 
+    # Создаем стили для границ
+    thin_border = Border(left=Side(style='thin'),
+                         right=Side(style='thin'),
+                         top=Side(style='thin'),
+                         bottom=Side(style='thin'))
+
     # Записываем заголовки столбцов
     sheet.cell(row=1, column=1, value="Key") # записываем заголовок первого столбца "Key"
     for col_num, col_name in enumerate(columns, start=2):
-        sheet.cell(row=1, column=col_num, value=col_name)
+        cell = sheet.cell(row=1, column=col_num, value=col_name)
+        cell.border = thin_border  # Добавляем границы к заголовкам
 
     # Записываем данные
-    red_fill = PatternFill(start_color="FFFF0000", end_color="FFFF0000", fill_type="solid") # Создаём стиль заливки красным
+    red_fill = PatternFill(start_color="008000", end_color="008000", fill_type="solid") # Создаём стиль заливки красным
     for row_num, (key, value_list) in enumerate(my_dict, start=2):
-        sheet.cell(row=row_num, column=1, value=key) # записываем ключи в первый столбец
+        cell = sheet.cell(row=row_num, column=1, value=key) # записываем ключи в первый столбец
+        cell.border = thin_border  # Добавляем границы к заголовкам
 
         for col_num, col_name in enumerate(columns, start=2):
-             if col_name in value_list:
-                 sheet.cell(row=row_num, column=col_num, value='-')
-             else:
-                 cell = sheet.cell(row=row_num, column=col_num) # Получаем ячейку
-                 cell.fill = red_fill # окрашиваем ячейку в красный
+            cell = sheet.cell(row=row_num, column=col_num)  # Получаем ячейку
+            if col_name in value_list:
+                cell.fill = red_fill  # окрашиваем ячейку в красный
+            else:
+                cell.value = '-'
+            cell.border = thin_border  # Добавляем границы
 
     # Сохраняем файл
     workbook.save("output.xlsx")

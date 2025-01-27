@@ -1,11 +1,22 @@
-import time
 from reader import initialise
 from octree import SpaceSeparation
 from interactions import Config, Interactions
 from utils import *
+import os
+import re
 
 
-start_time = time.time()
+def get_file_names_from_folder(folder_path):
+    """Возвращает список имен файлов в указанной папке."""
+    try:
+        file_names = os.listdir(folder_path)
+        # Фильтруем, чтобы оставить только файлы (не каталоги)
+        file_names = [f for f in file_names if os.path.isfile(os.path.join(folder_path, f))]
+        return file_names
+    except FileNotFoundError:
+        print(f"Ошибка: Папка '{folder_path}' не найдена.")
+        return []
+
 
 def one_prot(file_name):
     protein = initialise('ff.top', file_name)
@@ -23,11 +34,23 @@ def one_prot(file_name):
     interactions.find_interaction_electrostatic(config_qq, 'electrostatic', cubes_qq, qq_negative, protein)
     return protein
 
-pdb_names = []
-i = 1
-while i <= 400:
-    pdb_names.append(f'5ZIM_b_{i}.pdb')
-    i += 10
+def custom_sort_key(obj):
+    """
+    Разбивает строку объекта на последовательность букв и чисел для сортировки.
+    """
+    text = str(obj)
+    parts = []
+    for part in re.findall(r"(\d+|[^\d]+)", text):
+        if part.isdigit():
+            parts.append(int(part))
+        else:
+            parts.append(part)
+    return parts
+
+# Пример использования
+folder = "compare"  # Замените на фактический путь
+files = get_file_names_from_folder(folder)
+pdb_names = sorted(files, key=custom_sort_key)
 
 hbond_protein_dict = {}
 for pdb_name in pdb_names:
@@ -44,8 +67,9 @@ def complex_sort_key(key):
 sorted_items = sorted(hbond_protein_dict.items(), key=complex_sort_key)
 create_excel(sorted_items, pdb_names)
 
-print("time elapsed: {:.3f}s".format(time.time() - start_time))
 """
+print("time elapsed: {:.3f}s".format(time.time() - start_time))
+
 for idx, res in sorted_items:
     res2 = protein2.residues[idx]
     for a, b in zip(res.atoms.values(), res2.atoms.values()):
