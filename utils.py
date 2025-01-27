@@ -20,9 +20,11 @@ def atoms_for_hbond(protein):
     for v in protein.residues.values():
         for atom in v.atoms.values():
             protein.atoms.update({atom.atom_id: atom})
+            """
             # skip backbone
             if 'C' in atom.residue.bonds[atom.name] or 'N' in atom.residue.bonds[atom.name]:
                 continue
+            """
             # check hbonds
             if check_hbond(atom):
                 atoms_in_hbonds.append(atom)

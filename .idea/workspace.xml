@@ -4,9 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8cfe9b9d-7f31-4013-9bdf-03a25b350b06" name="Changes" comment="example">
+    <list default="true" id="8cfe9b9d-7f31-4013-9bdf-03a25b350b06" name="Changes" comment="del">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/run_sa.py" beforeDir="false" afterPath="$PROJECT_DIR$/run_sa.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/interactions.py" beforeDir="false" afterPath="$PROJECT_DIR$/interactions.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -263,7 +263,23 @@
       <option name="project" value="LOCAL" />
       <updated>1737971967270</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="add charge-charge inter">
+      <option name="closed" value="true" />
+      <created>1737974043143</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1737974043143</updated>
+    </task>
+    <task id="LOCAL-00009" summary="del">
+      <option name="closed" value="true" />
+      <created>1737974102060</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1737974102060</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -275,6 +291,8 @@
     <MESSAGE value="compare proteins and create excel file" />
     <MESSAGE value="get pdbs from compare folder" />
     <MESSAGE value="example" />
-    <option name="LAST_COMMIT_MESSAGE" value="example" />
+    <MESSAGE value="add charge-charge inter" />
+    <MESSAGE value="del" />
+    <option name="LAST_COMMIT_MESSAGE" value="del" />
   </component>
 </project>

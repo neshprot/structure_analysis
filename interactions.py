@@ -182,6 +182,8 @@ class Interactions:
                     matched_nodes.add(second_atom)
 
         for inter, fisrt_a, second_a in result:
+            if 'C' in inter.atom1.residue.bonds[inter.atom1.name] or 'N' in inter.atom1.residue.bonds[inter.atom1.name]:
+                continue
             protein.atoms[fisrt_a].hbond = inter
             protein.atoms[second_a].hbond = inter
 
@@ -232,11 +234,6 @@ class Interactions:
                 result.append((weight, node1, node2))
                 matched_nodes.add(node1)
                 matched_nodes.add(node2)
-                # only node1 cause node1 is donor and node2 acceptor
-                if protein.atoms[node1].residue.res_name == 'HOH' and protein.atoms[node1].name[0] == 'H':
-                    second_atom = find_related_h_value(protein.atoms[node1].residue.atoms,
-                                                       protein.atoms[node1].name).atom_id
-                    matched_nodes.add(second_atom)
 
         for inter, fisrt_a, second_a in result:
             protein.atoms[fisrt_a].electrostatic = inter
