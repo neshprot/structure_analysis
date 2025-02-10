@@ -24,10 +24,12 @@ git clone https://github.com/neshprot/structure_analysis.git
 
 How to run the program
 - add your target pdb files in compare folder
+- delete previous .xlsx files if you don't want to use them
 - run the script
 ```
 python run_sa.py
 ```
+- this script create two files: hbobds.xlsx, electrostatic.xlsx
 
 ## Authors
 
