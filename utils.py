@@ -74,8 +74,13 @@ def get_inteructions(protein, pdb_name, hbond_protein_dict, electrostatic_protei
             continue
         for a in res.atoms.values():
             if a.hbond:
-                hbond_protein_dict[f'{format_interaction(a.hbond, idx)}'] = hbond_protein_dict.get(
-                    f'{format_interaction(a.hbond, idx)}', []) + [pdb_name]
+                if a.residue.res_name == 'HOH':
+                    for bond in a.water_hbond_output():
+                        hbond_protein_dict[f'{format_interaction(bond, idx)}'] = hbond_protein_dict.get(
+                            f'{format_interaction(bond, idx)}', []) + [pdb_name]
+                else:
+                    hbond_protein_dict[f'{format_interaction(a.hbond, idx)}'] = hbond_protein_dict.get(
+                        f'{format_interaction(a.hbond, idx)}', []) + [pdb_name]
             if a.electrostatic:
                 electrostatic_protein_dict[f'{format_interaction(a.electrostatic, idx)}'] = electrostatic_protein_dict.get(
                     f'{format_interaction(a.electrostatic, idx)}', []) + [pdb_name]
@@ -108,7 +113,7 @@ def create_excel(my_dict, columns, file_name):
         for col_num, col_name in enumerate(columns, start=2):
             cell = sheet.cell(row=row_num, column=col_num)  # Получаем ячейку
             if col_name in value_list:
-                cell.fill = red_fill  # окрашиваем ячейку в красный
+                cell.fill = red_fill  # окрашиваем ячейку в зеленый
             else:
                 cell.value = '-'
             cell.border = thin_border  # Добавляем границы

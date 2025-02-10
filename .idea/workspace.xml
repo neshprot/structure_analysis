@@ -4,9 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8cfe9b9d-7f31-4013-9bdf-03a25b350b06" name="Changes" comment="del">
+    <list default="true" id="8cfe9b9d-7f31-4013-9bdf-03a25b350b06" name="Changes" comment="refactor backbone interactions">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/compare/5ZIM_b_1.pdb" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/interactions.py" beforeDir="false" afterPath="$PROJECT_DIR$/interactions.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/structures.py" beforeDir="false" afterPath="$PROJECT_DIR$/structures.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -279,7 +281,23 @@
       <option name="project" value="LOCAL" />
       <updated>1737974102060</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="refactor backbone interactions">
+      <option name="closed" value="true" />
+      <created>1737981375348</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1737981375348</updated>
+    </task>
+    <task id="LOCAL-00011" summary="delete unnecessary comments">
+      <option name="closed" value="true" />
+      <created>1739024951826</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1739024951826</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -293,6 +311,8 @@
     <MESSAGE value="example" />
     <MESSAGE value="add charge-charge inter" />
     <MESSAGE value="del" />
-    <option name="LAST_COMMIT_MESSAGE" value="del" />
+    <MESSAGE value="refactor backbone interactions" />
+    <MESSAGE value="delete unnecessary comments" />
+    <option name="LAST_COMMIT_MESSAGE" value="delete unnecessary comments" />
   </component>
 </project>

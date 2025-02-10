@@ -18,8 +18,8 @@ class Atom:
         self.__name = None
         self.__coordinates = np.array([None, None, None])
         self.__residue = None
-        self.__hbond = None
-        self.__electrostatic = None
+        self.__hbond = []
+        self.__electrostatic = []
 
     @property
     def atom_id(self):
@@ -55,11 +55,13 @@ class Atom:
 
     @property
     def hbond(self) -> object:
-        return self.__hbond
+        if not self.__hbond:
+            return None
+        return self.__hbond[0]
 
     @hbond.setter
     def hbond(self, value: list):
-        self.__hbond = value
+        self.__hbond.append(value)
 
     @property
     def electrostatic(self):
@@ -68,6 +70,9 @@ class Atom:
     @electrostatic.setter
     def electrostatic(self, value):
         self.__electrostatic = value
+
+    def water_hbond_output(self):
+        return self.__hbond
 
 
 class Residue:

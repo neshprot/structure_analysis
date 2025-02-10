@@ -169,17 +169,18 @@ class Interactions:
         edges = sorted(inter_atoms, key=lambda x: x[0].squared_distance)
         matched_nodes = set()
         result = []
+        water_nodes = set()
 
         for weight, node1, node2 in edges:
             if node1 not in matched_nodes and node2 not in matched_nodes:
                 result.append((weight, node1, node2))
-                matched_nodes.add(node1)
                 matched_nodes.add(node2)
-                # only node1 cause node1 is donor and node2 acceptor
-                if protein.atoms[node1].residue.res_name == 'HOH' and protein.atoms[node1].name[0] == 'H':
-                    second_atom = find_related_h_value(protein.atoms[node1].residue.atoms,
-                                                       protein.atoms[node1].name).atom_id
-                    matched_nodes.add(second_atom)
+                if protein.atoms[node1].residue.res_name == 'HOH':
+                    if node1 in water_nodes:
+                        matched_nodes.add(node1)
+                    water_nodes.add(node1)
+                else:
+                    matched_nodes.add(node1)
 
         for inter, fisrt_a, second_a in result:
             if 'C' in inter.atom1.residue.bonds[inter.atom1.name] or 'N' in inter.atom1.residue.bonds[inter.atom1.name]:
@@ -189,33 +190,6 @@ class Interactions:
 
     @staticmethod
     def find_interaction_electrostatic(config, inter_name: str, separation, atoms, protein):
-        def find_related_h_value(data, input_key):
-            """
-            Находит и выводит ключ-значение пару для ключа начинающегося на H,
-            отличного от введенного ключа, если таковой имеется.
-            :param data: Словарь, в котором ищем.
-            :param input_key: Введенный ключ, начинающийся с H.
-            :return: Вывод на консоль
-            """
-            h_keys = [key for key in data if key.startswith("H")]
-
-            if not h_keys:
-                return
-
-            if input_key not in h_keys:
-                return
-
-            other_h_key = None
-            for key in h_keys:
-                if key != input_key:
-                    other_h_key = key
-                    break
-
-            if other_h_key:
-                return data[other_h_key]
-            else:
-                return
-
         inter_atoms = []
         for atom in atoms:
             nearest_atoms = separation.cube_cluster_search(atom, inter_name, config)
